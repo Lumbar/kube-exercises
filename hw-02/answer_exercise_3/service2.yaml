@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-int
+  namespace: "kube-exercises"
+spec:
+  ports:
+    - port: 80
+  type: ClusterIP
+  selector:
+    app: "nginx"

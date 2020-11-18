@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  namespace: kube-exercises
+  labels:
+    app: nginx-server
+spec:
+  containers:
+  - name: nginx-server-ctr
+    image: nginx:1.19.4
+    resources:
+      limits:
+        cpu: 100m
+        memory: "256Mi"
+      requests:
+        cpu: 100m
+        memory: "256Mi"

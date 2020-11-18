@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: web
+  template:
+    metadata:
+      labels:
+        tier: web
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+      containers:
+      - name: nginx-server-ctr
+        image: nginx:1.19.4
+        resources:
+          limits:
+            cpu: 100m
+            memory: "256Mi"
+          requests:
+            cpu: 100m
+            memory: "256Mi"
+        
