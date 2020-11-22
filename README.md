@@ -6,3 +6,6 @@ MDAS - Principios y herramientas de desarrollo
 
 
 Para los ejercicios se explican los pasos realizados en los archivos .md y las imagenes y pruebas se encuentran dentro de la carpeta con el mismo nombre de cada archivo .md
+
+minikube start -p myminikube --vm=true — vm-driver="hyperv" — hyperv-virtual-switch=myminikube 
+kubectl config set-context --current --namespace=kube-exercises
