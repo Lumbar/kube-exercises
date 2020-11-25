@@ -1,16 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: nginx-dply
+  labels:
+    app: nginx-srv
 spec:
   selector:
     matchLabels:
-      run: nginx
+      app: nginx-srv
   replicas: 1
   template:
     metadata:
       labels:
-        run: nginx
+        app: nginx-srv
     spec:
       containers:
       - name: nginx
@@ -19,21 +21,25 @@ spec:
         - containerPort: 80
         resources:
           limits:
-            cpu: 100m
-            memory: "256Mi"
+            cpu: 5m
+            memory: "128Mi"
           requests:
-            cpu: 100m
-            memory: "256Mi"
+            cpu: 5m
+            memory: "128Mi"
             
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx
+  name: nginx-srvc
   labels:
-    run: nginx
+    app: nginx-srv
 spec:
+  selector: 
+    app: nginx-srv
+  type: NodePort
   ports:
-  - port: 80
-  selector:
-    run: nginx
+    - name: http
+      targetPort: 80
+      port: 80
+      nodePort: 31217
